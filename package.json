@@ -1,0 +1,41 @@
+{
+  "name": "pactum-api-coverage",
+  "version": "1.0.1",
+  "description": "API coverage report for pactum tests",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "uvu tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honzabit/pactum-api-coverage.git"
+  },
+  "keywords": [
+    "pactum",
+    "swagger coverage",
+	"openapi coverage",
+	"api coverage",
+	"endpoint coverage",
+    "reporter"
+  ],
+  "author": "Honzabit <ian@apiron.dev>",
+  "contributors": [
+	"LeelaPrasad <leelaprasad.vadlaa@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/honzabit/pactum-api-coverage/issues"
+  },
+  "homepage": "https://github.com/honzabit/pactum-api-coverage#readme",
+  "devDependencies": {
+    "pactum": "^3.1.12",
+    "uvu": "^0.5.4"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}

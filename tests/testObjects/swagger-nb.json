@@ -1,0 +1,206 @@
+{
+	"swagger": "2.0",
+	"info": {
+	  "version": "1.0.0",
+	  "title": "Test API server"
+	},
+	"consumes": [
+	  "application/json",
+	  "text/html"
+	],
+	"produces": [
+	  "application/json",
+	  "text/html"
+	],
+	"paths": {
+	  "/health": {
+		"get": {
+			"tags": [
+			  "HealthCheck"
+			],
+			"description": "Health check",
+			"operationId": "getHealth",
+			"parameters": [],
+			"responses": {
+			  "200": {
+				"description": "Success",
+				"schema": {
+				  "$ref": "#/definitions/Health"
+				}
+			  }
+			}
+		  },
+		  "post": {
+			"tags": [
+			  "HealthCheckCreate"
+			],
+			"description": "Create Health check",
+			"operationId": "postHealth",
+			"parameters": [],
+			"responses": {
+			  "200": {
+				"description": "Success",
+				"schema": {
+				  "$ref": "#/definitions/Health"
+				}
+			  }
+			}
+		  },
+		"x-swagger-router-controller": "health.controller"
+	  },
+	  "/getallninjas": {
+		"get": {
+		  "tags": [
+			"Ninjas"
+		  ],
+		  "description": "Get All Ninjas",
+		  "operationId": "getAllNinjas",
+		  "parameters": [],
+		  "responses": {
+			"200": {
+			  "description": "Success",
+			  "schema": {
+				"$ref": "#/definitions/Health"
+			  }
+			}
+		  }
+		},
+		"x-swagger-router-controller": "test.controller"
+	  },
+	  "/getninjas/{rank}": {
+		"get": {
+		  "tags": [
+			"Ninjas"
+		  ],
+		  "description": "Get Ninja details by Rank",
+		  "operationId": "getNinjaByRank",
+		  "parameters": [
+			{
+			  "name": "rank",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Rank of Ninja",
+			  "required": true
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success",
+			  "schema": {
+				"$ref": "#/definitions/Health"
+			  }
+			}
+		  }
+		},
+		"x-swagger-router-controller": "test.controller"
+	  },
+	  "/getninjas/{clan}/{rank}": {
+		"get": {
+		  "tags": [
+			"Ninjas"
+		  ],
+		  "description": "Get Ninja details by Clan and Rank",
+		  "operationId": "getNinjaByRank",
+		  "parameters": [
+			{
+			  "name": "clan",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Clan of Ninja",
+			  "required": true
+			},
+			{
+			  "name": "rank",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Rank of Ninja",
+			  "required": true
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success",
+			  "schema": {
+				"$ref": "#/definitions/Health"
+			  }
+			}
+		  }
+		},
+		"x-swagger-router-controller": "test.controller"
+	  },
+	  "/getninja/{name}": {
+		"get": {
+		  "tags": [
+			"Ninjas"
+		  ],
+		  "description": "Get Ninja details by Name",
+		  "operationId": "getNinjaByRank",
+		  "parameters": [
+			{
+			  "name": "name",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Name of Ninja",
+			  "required": true
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success",
+			  "schema": {
+				"$ref": "#/definitions/Health"
+			  }
+			}
+		  }
+		},
+		"x-swagger-router-controller": "test.controller"
+	  },
+	  "/getninja/{rank}/{name}": {
+		"get": {
+		  "tags": [
+			"Ninjas"
+		  ],
+		  "description": "Get Ninja details by Rank and name",
+		  "operationId": "getNinjaByRank",
+		  "parameters": [
+			{
+			  "name": "rank",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Rank of Ninja",
+			  "required": true
+			},
+			{
+			  "name": "name",
+			  "in": "path",
+			  "type": "string",
+			  "description": "Name of Ninja",
+			  "required": true
+			}
+		  ],
+		  "responses": {
+			"200": {
+			  "description": "Success",
+			  "schema": {
+				"$ref": "#/definitions/Health"
+			  }
+			}
+		  }
+		},
+		"x-swagger-router-controller": "test.controller"
+	  }
+	},
+	"definitions": {
+	  "Health": {
+		"description": "Health Response",
+		"properties": {
+		  "message": {
+			"type": "string"
+		  }
+		},
+		"example": {
+		  "message": "OK"
+		}
+	  }
+	}
+  }
