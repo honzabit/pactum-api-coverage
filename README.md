@@ -43,6 +43,8 @@ psc.path = './reports-path';
 // Load a local JSON spec file (or a remote one)
 psc.specData = require("./specs/v1/oas.json");
 
+// Ignore specific response codes
+psc.ignoreResponseCodes = [ 400, 500]
 ```
 
 ### Report Json Output (example)
