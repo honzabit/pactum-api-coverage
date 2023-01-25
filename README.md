@@ -48,21 +48,22 @@ psc.specData = require("./specs/v1/oas.json");
 ### Report Json Output (example)
 ```javascript
 {
- "basePath": "/v1",
-  "coverage": 0.5714285714285714,
+  "basePath": "/v1",
+  "coverage": 0.5,
   "coveredApiCount": 4,
-  "missedApiCount": 3,
-  "totalApiCount": 7,
+  "missedApiCount": 4,
+  "totalApiCount": 8,
   "coveredApiList": [
-    "get|/v1/health",
-    "get|/v1/getallninjas",
-    "get|/v1/getninjas/{rank}",
-    "get|/v1/getninja/{rank}/{name}"
+    "200|get|/v1/health",
+    "200|get|/v1/getallninjas",
+    "200|get|/v1/getninjas/{rank}",
+    "200|get|/v1/getninja/{rank}/{name}"
   ],
   "missedApiList": [
-    "post|/v1/health",
-    "get|/v1/getninjas/{clan}/{rank}",
-    "get|/v1/getninja/{name}"
+    "200|post|/v1/health",
+    "200|get|/v1/getninjas/{clan}/{rank}",
+    "400|get|/v1/getninjas/{clan}/{rank}",
+    "200|get|/v1/getninja/{name}"
   ]
 }
 ```
