@@ -12,13 +12,14 @@ const psc = {
   file: config.file,
   specData: config.specData,
   basePath: config.basePath,
+  ignoreResponseCodes: config.ignoreResponseCodes,
 
   afterSpec(spec) {
     const _specApiPath = {}
     _specApiPath.path = spec.request.path;
     _specApiPath.method = spec.request.method;
-	_specApiPath.code = spec.response.statusCode
-    testsCoveredApis.push(_specApiPath);
+	_specApiPath.code = spec.response.statusCode;
+	testsCoveredApis.push(_specApiPath);
   },
 
   afterStep(step) { },
@@ -28,6 +29,7 @@ const psc = {
   async end() {
 	config.basePath = this.basePath;
     config.specData = this.specData;
+	config.ignoreResponseCodes = this.ignoreResponseCodes;
     const coverage = await core.getAPICoverage(testsCoveredApis)
 
     if (!fs.existsSync(this.reportPath)) {

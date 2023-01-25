@@ -11,11 +11,15 @@ function getApiOperations(specInfo) {
   const apiOperations = [];
   apiPaths.forEach((apiPath) => {
 	apiOperations.push(
-		...Object.keys(specInfo.paths[apiPath]).filter(o => verbs.includes(o)).flatMap(o =>
-		Object.keys(specInfo.paths[apiPath][o].responses).map(r =>
-			`${r}|${o}|${config.basePath}${apiPath}`
+		...Object.keys(specInfo.paths[apiPath])
+		.filter(o => verbs.includes(o))
+		.flatMap(o => Object.keys(specInfo.paths[apiPath][o].responses)
+			.filter(r => { 
+				return ! config.ignoreResponseCodes.some(x => x === parseInt(r))
+			})
+			.map(r => `${r}|${o}|${config.basePath}${apiPath}`)
 		)
-	))
+	);
   });
   return apiOperations;
 }
