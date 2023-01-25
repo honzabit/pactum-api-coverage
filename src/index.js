@@ -17,6 +17,7 @@ const psc = {
     const _specApiPath = {}
     _specApiPath.path = spec.request.path;
     _specApiPath.method = spec.request.method;
+	_specApiPath.code = spec.response.statusCode
     testsCoveredApis.push(_specApiPath);
   },
 

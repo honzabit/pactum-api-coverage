@@ -111,7 +111,6 @@ test('run reporter', async () => {
 
 test('validate json reporter', async () => {
   const report = require('../reports/report_oas.json');
-  console.log(JSON.stringify(report, null, 2));
   assert.equal(Object.keys(report).length, 7);
   assert.equal(report.hasOwnProperty("basePath"), true)
   assert.equal(report.hasOwnProperty("coverage"), true)
@@ -120,12 +119,12 @@ test('validate json reporter', async () => {
   assert.equal(report.hasOwnProperty("totalApiCount"), true)
   assert.equal(report.hasOwnProperty("coveredApiList"), true)
   assert.equal(report.hasOwnProperty("missedApiList"), true)
-  assert.equal(report.coverage, 0.5714285714285714);
+  assert.equal(report.coverage, 0.5);
   assert.equal(report.coveredApiCount, 4);
-  assert.equal(report.missedApiCount, 3);
-  assert.equal(report.totalApiCount, 7);
+  assert.equal(report.missedApiCount, 4);
+  assert.equal(report.totalApiCount, 8);
   assert.equal(report.coveredApiList.length, 4);
-  assert.equal(report.missedApiList.length, 3);
+  assert.equal(report.missedApiList.length, 4);
 });
 
 test.run();

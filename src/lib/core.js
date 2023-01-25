@@ -6,11 +6,16 @@ const config = require('../config');
  * @returns {Array} Array of API paths
  */
 function getApiOperations(specInfo) {
-	const verbs = [ 'get', 'post', 'put', 'delete', 'options', 'head', 'patch', 'trace']
+  const verbs = [ 'get', 'post', 'put', 'delete', 'options', 'head', 'patch', 'trace']
   const apiPaths = Object.keys(specInfo.paths);
   const apiOperations = [];
   apiPaths.forEach((apiPath) => {
-	apiOperations.push(...Object.keys(specInfo.paths[apiPath]).filter(o => verbs.includes(o)).map(o => `${o}|${config.basePath}${apiPath}`))
+	apiOperations.push(
+		...Object.keys(specInfo.paths[apiPath]).filter(o => verbs.includes(o)).flatMap(o =>
+		Object.keys(specInfo.paths[apiPath][o].responses).map(r =>
+			`${r}|${o}|${config.basePath}${apiPath}`
+		)
+	))
   });
   return apiOperations;
 }
@@ -24,10 +29,10 @@ async function getAPICoverage(testsCoveredApis) {
   const specInfo = config.specData;
   const apiPaths = getApiOperations(specInfo);
   const apiCovList = apiPaths.map(apiPath =>
-    !!testsCoveredApis.find(({ path, method }) => {
-      return !!regExMatchOfPath(apiPath.toLowerCase(), `${method}|${path}`.toLowerCase());
+    !!testsCoveredApis.find(({ path, method, code }) => {
+      return !!regExMatchOfPath(apiPath.toLowerCase(), `${code}|${method}|${path}`.toLowerCase());
     }));
-
+	
   return {
     basePath: config.basePath ?? specInfo.basePath,
     coverage: apiCovList.reduce((total, result, index, results) => result ? total + 1 / results.length : total, 0),
@@ -46,7 +51,7 @@ async function getAPICoverage(testsCoveredApis) {
  * @returns {Boolean} Match result
  */
 function regExMatchOfPath(apiPath, rPath) {
-  const regex = RegExp(apiPath.replace(/{[^\/]+}/ig,'.+').replace('\|', '\\|'))
+  const regex = RegExp(apiPath.replace(/{[^\/]+}/ig,'.+').replace(/\|/ig, '\\|'));
   const extractedApiPath = rPath.match(regex);
   const extractedPathSepCount = (extractedApiPath ? extractedApiPath.input.match(/\//ig) : []).length;
   const apiPathSepCount = (apiPath.match(/\//ig) || []).length;

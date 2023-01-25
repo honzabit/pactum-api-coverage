@@ -111,7 +111,6 @@ test('run reporter', async () => {
 
 test('validate json reporter', async () => {
   const report = require('../reports/report_swagger_nb.json');
-  console.log(JSON.stringify(report, null, 2));
   assert.equal(Object.keys(report).length, 7);
   assert.equal(report.hasOwnProperty("basePath"), true)
   assert.equal(report.hasOwnProperty("coverage"), true)
