@@ -44,7 +44,7 @@ psc.path = './reports-path';
 psc.specData = require("./specs/v1/oas.json");
 
 // Ignore specific response codes
-psc.ignoreResponseCodes = [ 400, 500]
+psc.ignoreResponseCodes = [ 429, 500]
 ```
 
 ### Report Json Output (example)

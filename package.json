@@ -1,6 +1,6 @@
 {
   "name": "pactum-api-coverage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "API coverage report for pactum tests",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
